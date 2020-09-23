@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css">
+</head>
+
+<body>
+
+
+    <div id="root" class="container">
+        <button @click="showModal = true"> Mostrar Modal </button>
+
+        <modal v-show="showModal" @meuclickfechar="showModal = false">
+            <h1 slot="header">Título definido pelo slot</h1>
+            <!-- pode-se usar a tag <template> no lugar do h1, dessa forma evitando remover/modificar a formatação padrão do bulma.io, bootstrap etc...  -->
+            Tem algo bem aqui! :D
+
+            <template slot="footer">
+                <button class="button is-success">Save changes</button>
+            </template>
+
+        </modal>
+        <!-- @meuclickfechar é um evento personalizado -->
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.0/vue.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

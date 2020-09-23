@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Teste de class binding</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./style.css">
+
+  <style type="text/css">
+    .color-red {
+      color: red;
+    }
+
+    .color-blue {
+      color: blue;
+    }
+
+    .is-loading {
+      background: red;
+    }
+
+    .back-green {
+      background-color: green;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="root">
+    <button title="Titulo do botão">Passe o mouse sobre o botão</button> <!-- Forma normal do title -->
+    <button title="titulo">Passe o mouse sobre o botão</button> <!-- Forma normal do title, sem vue -->
+    <button v-bind:title="titulo">Passe o mouse sobre o botão</button> <!-- Forma js do title com vue-->
+    <button :title="titulo">Passe o mouse sobre o botão</button>
+    <!-- Forma js do title, v-bind abreviado para apenas : -->
+
+
+    <!-- Class Binding -->
+    <h1 :class="className">Olá class binding</h1>
+
+    <h1 :class="{'is-loading': isLoading, 'color-blue': isBlue}" @click="toggleClass">Olá class binding {'is-loading':
+      isLoading}</h1>
+
+    <!-- Class Binding com objeto-->
+    <h1 :class="classObject">Olá class binding classObject</h1>
+
+    <!-- Class Binding com array-->
+    <h1 :class="[className, classBackgroundGreen]">Olá class binding com array</h1>
+    <!-- Aqui usamos as variaveis, precisamos de valores que sejam o nome de uma classe CSS -->
+
+    <!-- Class Binding inline style -->
+    <h1 :style="{color: azul, fontSize: 20 +'px'}">Olá style binding</h1>
+
+    <h1 :style="styleObject">Olá style binding com styleObject</h1>
+
+  </div>
+
+  <script src="http://unpkg.com/vue"></script> <!-- carrega o vue -->
+
+  <script>
+    var app = new Vue({
+      el: '#root',
+      data: {
+        titulo: "Agora o titulo modificado pelo javascript vue",
+
+        className: 'color-blue',
+        classBackgroundGreen: 'back-green',
+        isLoading: false,
+        isBlue: true,
+
+        azul: 'blue',
+        styleObject: {
+          color: 'green',
+          fontSize: '13px'
+        }
+      },
+
+      computed: { //Necessário quando precisamos pegar de um dado quando uma variavel já foi computada
+        classObject: function () { //Pode conter varios class, tornando não necessário criar varios individuais
+          return {
+            'is-loading': true,
+            'color-blue': this.isBlue //No caso aqui, isBlue já foi computado e sabemos que é true
+          }
+        }
+      },
+
+      methods: {
+        toggleClass() {
+          this.isLoading = !this.isLoading;
+          this.isBlue = !this.isBlue;
+        }
+      }
+    });
+  </script>
+
+</body>
+
+</html>

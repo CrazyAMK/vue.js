@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+
+    <div id="root">
+        {{ mensagem }}
+
+        <div v-once>{{ mensagem }}</div> <!-- Mostra o texto, porém ele não é atualizado/alterado -->
+
+        <div v-html="conteudoEmHtml"></div> <!-- Texto formatado com elementos html -->
+        <div v-text="conteudoEmHtml"></div> <!-- Texto sem formatação -->
+
+        <div v-bind:id="dynamicId">Div dinamico</div>
+        <button v-bind:disabled="expressaoBoleana">Button</button>
+
+    </div>
+
+    <script src="http://unpkg.com/vue"></script>
+
+    <script>
+        var app = new Vue({
+            el: "#root",
+            data: {
+                mensagem: "Oláaaaaaa!",
+                conteudoEmHtml: "<b>Olha o bold aqui</b>",
+                dynamicId: "divDinamico",
+                expressaoBoleana: true,
+            },
+            computed: {},
+            methods: {}
+        });
+    </script>
+
+</body>
+
+</html>
